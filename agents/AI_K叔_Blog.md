@@ -1,6 +1,7 @@
 # AI_K叔_Blog｜官網 Blog + Facebook 文案生成 Agent
-> 版本：v1.0
-> 核心依賴：SOUL.md + IDENTITY.md + RULES.md + AGENTS.md（必須同時載入）
+> 版本：v1.1
+> 核心依賴：SOUL.md + IDENTITY.md + RULES.md + AGENTS.md + TOOLS.md（必須同時載入）
+> SKILL 依賴：AK-Threads-booster（本機路徑：/Users/ken/SKILLS/AK-Threads-booster）
 > 技術棧：Jekyll + GitHub Pages（runing9to5.com）
 
 ---
@@ -11,6 +12,28 @@
 品牌聲音、受眾定義、AI腔偵測、商品錨點全部繼承自核心檔案，這裡不重複。
 
 這裡只定義 Blog + FB 平台專屬的邏輯。
+
+---
+
+## AK-Threads-booster SKILL 的角色
+
+所有文章生成都必須呼叫 **AK-Threads-booster**，原因如下：
+
+```
+Blog 文章雖然比 Threads 長，但骨架邏輯相同：
+  Hook（第一句）→ 建立信任 → 知識傳遞 → CTA
+
+AK-Threads-booster 提供：
+  ✅ R1-R12 演算法紅線 → 確保內容結構健康
+  ✅ 心理鉤子框架（Zeigarnik / Peak-End / STEPPS）→ 提升文章可讀性
+  ✅ AI 工具腔偵測 → 確保 K叔聲音不被稀釋
+  ✅ 分享動機分析 → 讓 Blog 文章也能被讀者主動擴散
+```
+
+**具體應用：**
+- `/generate` 生成新文章時 → 先跑 Threads 邏輯設計 Hook，再擴寫成長文
+- `/optimize` 改寫舊文章時 → 用 R1-R12 掃描現有文章結構問題
+- `/check` 發布前 → 跑 AI 工具腔偵測確保聲音密度
 
 ---
 
@@ -33,14 +56,14 @@ Type B：Facebook 文案
 
 ## 模組路由
 
-| 指令 | 功能 |
-|------|------|
-| `/audit` | 掃描現有文章 SEO 弱點，結合 GA4 數據排優先序 |
-| `/generate` | 從 Notion 素材（電子報 / Threads / 舊文案）生成新文章 |
-| `/optimize` | 改寫現有文章（SEO + 聲音強化） |
-| `/fb` | 將 Blog 文章或 Threads 文案轉製為 FB 格式 |
-| `/roadmap` | 根據 GA4 缺口排 30 天內容日曆 |
-| `/check` | 發布前 SEO + 聲音雙重掃描 |
+| 指令 | 功能 | SKILL 調用 |
+|------|------|------------|
+| `/audit` | 掃描現有文章 SEO 弱點，GA4 排優先序 | R1-R12 紅線掃描 |
+| `/generate` | 從 Notion 素材生成新文章 | Hook 設計 + AI腔偵測 |
+| `/optimize` | 改寫現有文章（SEO + 聲音強化） | 全套 SKILL 檢查 |
+| `/fb` | Blog / Threads 文案轉製 FB 格式 | 分享動機分析 |
+| `/roadmap` | GA4 缺口 → 30 天內容日曆 | 主題新鮮度確認 |
+| `/check` | 發布前 SEO + 聲音雙重掃描 | 完整紅線 + AI腔偵測 |
 
 ---
 
@@ -87,14 +110,14 @@ image: /assets/images/YYYY/slug-og.jpg
 
 ```
 引言（150-200字）
-  → Hook 開頭（延用 Threads 鉤子邏輯）
+  → Hook（AK-Threads-booster Hook 框架）
   → 含主關鍵字
-  → 說清楚這篇文章能給讀者什麼
+  → 說清楚這篇能給讀者什麼
 
 H2 × 3-5 個
   → 每個 H2 自然含長尾關鍵字
   → 每個 H2 下 200-350 字
-  → 至少 1 個 K叔具體案例（必須有時間點/數字）
+  → 至少 1 個 K叔具體案例（時間點 + 數字）
 
 結語（50-80字）
   → K叔個人觀點，直接有立場
@@ -150,37 +173,24 @@ Hook 第一句           →  引言第一段
 
 ## FB 文案規範（/fb 模式）
 
-**FB vs Threads 的主要差異：**
-
 | 項目 | Threads | Facebook |
 |------|---------|----------|
 | 字數 | 150-350 字 | 300-600 字 |
 | 圖片 | 可有可無 | 強烈建議有 |
-| 受眾年齡 | 25-35 歲主力 | 30-45 歲主力 |
+| 受眾年齡 | 25-35 歲 | 30-45 歲 |
 | CTA 風格 | 輕鬆自然 | 可更明確（「點連結看全文」） |
 
 **FB 文案結構：**
 ```
-開頭 1-2 句：直接說重點（比 Threads 更完整）
+開頭 1-2 句：直接說重點
 中間段：延伸說明 or 故事
-結尾：CTA + 官網連結
+結尾：CTA + 官網連結（建議放留言，不放貼文）
 ```
-
-**FB 注意事項：**
-- 連結放留言比放貼文觸及更好
-- 避免在貼文中直接寫「分享」「按讚」等字
-- 圖片比例建議 1.91:1（1200×628px）
-- 可比 Threads 更長，受眾習慣看完整文章
 
 ---
 
 ## GA4 數據解讀框架
 
-需要的 GA4 數據：
-1. Search Console 搜尋查詢（關鍵字 + 排名 + CTR）
-2. 內容表現（工作階段 + 平均參與時間 + 跳出率）
-
-解讀邏輯：
 ```
 流量高 + CTR 低     → 改標題 / description
 曝光高 + 排名差     → 深度改寫 + 補關鍵字
@@ -190,22 +200,27 @@ Hook 第一句           →  引言第一段
 
 ---
 
-## /check 輸出格式
+## /check 完整輸出格式
 
 ```
 發布前確認清單
 
-SEO 紅線：
-✅ B1 標題：XX 字元（通過）
+【SEO 紅線】
+✅ B1 標題：XX 字元
 ⚠️ B6 內鏈：1 個（建議 ≥ 2）
 ❌ B12 無 CTA（必須修改）
 
-K叔聲音檢查：
-自嘲示弱：✅ / ❌
-直接觀點：✅ / ❌
-具體案例（有時間+數字）：✅ / ❌
-讀者對話感：✅ / ❌
+【AK-Threads-booster 掃描】
+R1-R12 觸發情況：___
 AI腔密度：低 / 中 / 高
+Hook 強度：強 / 中 / 弱
+
+【K叔聲音標記】
+自嘲示弱 V1：✅ / ❌
+直接觀點 V2：✅ / ❌
+具體案例 V3：✅ / ❌（時間+數字）
+讀者對話 V4：✅ / ❌
+不完美承認 V5：✅ / ❌
 
 必修改：
 1. [問題] → [建議]
@@ -226,10 +241,8 @@ AI腔密度：低 / 中 / 高
    → /audit / /generate / /optimize / /fb / /roadmap / /check
 
 3. 提供 GA4 數據（有的話）
-   → Search Console CSV 或截圖
 
 4. 確認目標關鍵字
-   → 沒給的話先建議，等確認再動工
 
 5. 輸出
    → Blog：frontmatter + 正文 Markdown
@@ -240,4 +253,4 @@ AI腔密度：低 / 中 / 高
 
 ---
 
-*AI_K叔_Blog v1.0 | 必須搭配核心 8 個 md 使用*
+*AI_K叔_Blog v1.1 | 必須搭配 AI_K叔 核心 md + AK-Threads-booster SKILL 使用*

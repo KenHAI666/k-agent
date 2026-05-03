@@ -12,9 +12,13 @@
 ```
 AI_K叔（核心大腦）← 根目錄 8 個 md 檔
 ├── AI_K叔_THREADS（Threads 文案生成）← agents/AI_K叔_THREADS.md
-│   └── 依賴 SKILL：AK-Threads-booster（/Users/ken/SKILLS/）
+│   └── SKILL：AK-Threads-booster ✅
 └── AI_K叔_Blog（官網 Blog + FB 文案）← agents/AI_K叔_Blog.md
+    └── SKILL：AK-Threads-booster ✅
 ```
+
+> **所有文章生成都依賴 AK-Threads-booster SKILL**
+> 本機路徑：`/Users/ken/SKILLS/AK-Threads-booster`
 
 ---
 
@@ -37,24 +41,58 @@ AI_K叔（核心大腦）← 根目錄 8 個 md 檔
 
 ## 子 Agent 檔案
 
-| 檔案 | 用途 |
-|------|------|
-| `agents/AI_K叔_THREADS.md` | Threads 文案生成、演算法紅線、聲音分析 |
-| `agents/AI_K叔_Blog.md` | 官網 Blog 文章、SEO 優化、FB 文案轉製 |
+| 檔案 | 用途 | SKILL |
+|------|------|-------|
+| `agents/AI_K叔_THREADS.md` | Threads 文案生成、演算法紅線、聲音分析 | AK-Threads-booster ✅ |
+| `agents/AI_K叔_Blog.md` | 官網 Blog、SEO 優化、FB 文案 | AK-Threads-booster ✅ |
 
 ---
 
-## 使用方式
+## 載入清單
 
 ### AI_K叔（核心，全功能）
-載入根目錄所有 md → 貼入 Claude Project Instructions
+```
+SOUL.md + USER.md + RULES.md + AGENTS.md + BOOTSTRAP.md + IDENTITY.md + TOOLS.md + MEMORY.md
+```
 
 ### AI_K叔_THREADS
-載入：`SOUL.md` + `IDENTITY.md` + `RULES.md` + `AGENTS.md` + `agents/AI_K叔_THREADS.md`
-SKILL：AK-Threads-booster
+```
+SOUL.md + IDENTITY.md + RULES.md + AGENTS.md
++ agents/AI_K叔_THREADS.md
++ SKILL: AK-Threads-booster
+```
 
 ### AI_K叔_Blog
-載入：`SOUL.md` + `IDENTITY.md` + `RULES.md` + `AGENTS.md` + `TOOLS.md` + `agents/AI_K叔_Blog.md`
+```
+SOUL.md + IDENTITY.md + RULES.md + AGENTS.md + TOOLS.md
++ agents/AI_K叔_Blog.md
++ SKILL: AK-Threads-booster
+```
+
+---
+
+## AK-Threads-booster SKILL 在所有 Agent 中的角色
+
+```
+Threads Agent → 演算法優化、互動預測、聲音分析
+Blog Agent    → Hook 設計、AI腔偵測、結構健康檢查、分享動機分析
+
+共同邏輯：
+  R1-R12 紅線  → 確保內容結構健康
+  AI腔偵測     → 確保 K叔聲音不被稀釋
+  Hook 框架    → 所有文章第一句都要能讓人停下來
+```
+
+---
+
+## Agent 完成狀態
+
+| Agent | 狀態 | 說明 |
+|-------|------|------|
+| AI_K叔（核心）| ✅ 完成 | 根目錄 8 個 md |
+| AI_K叔_THREADS | ✅ 完成 | agents/AI_K叔_THREADS.md v2.0 |
+| AI_K叔_Blog | ✅ 完成 | agents/AI_K叔_Blog.md v1.1 |
+| AK-Threads-booster SKILL | ✅ 已安裝 | /Users/ken/SKILLS/ |
 
 ---
 
@@ -70,7 +108,7 @@ SKILL：AK-Threads-booster
 
 | 版本 | 說明 |
 |------|------|
-| v2.0 | 新增三 Agent 架構，加入 AI_K叔_THREADS + AI_K叔_Blog 子 Agent |
+| v2.0 | 三 Agent 架構，所有 Agent 統一依賴 AK-Threads-booster SKILL |
 | v1.0 | 初始 8 個 md 核心設定 |
 
 ---
