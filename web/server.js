@@ -1,3 +1,4 @@
+import 'dotenv/config'
 import express from 'express'
 import { Client } from '@notionhq/client'
 import Anthropic from '@anthropic-ai/sdk'
@@ -9,10 +10,10 @@ import { dirname, join } from 'path'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
 
-// ── 設定 ──────────────────────────────────────────────
-const NOTION_TOKEN    = process.env.NOTION_TOKEN    || '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'
-const THREADS_TOKEN   = process.env.THREADS_TOKEN   || 'THAAVwcNLxi6ZABUVFvVml6TnlfNklFWUZA3OHN5WXZAYMElrbHplNWVqY25Bc1RmZAFpmQWZAVVGQzTXp3cFhmUmxuXzlabG1OVHpqeUs5Nmt4ODhMYTZASUk9MYi1UN1RCdDRxdjlVdzAtQWVFSERCcWZA2UlhFcFVMMTRQMURkSDJmYllVdwZDZD'
-const THREADS_USER_ID = process.env.THREADS_USER_ID || '25279980738260900'
+// ── 設定（從 web/.env 讀取） ──────────────────────────
+const NOTION_TOKEN    = process.env.NOTION_TOKEN    || ''
+const THREADS_TOKEN   = process.env.THREADS_TOKEN   || ''
+const THREADS_USER_ID = process.env.THREADS_USER_ID || ''
 const ANTHROPIC_KEY   = process.env.ANTHROPIC_API_KEY || ''
 const DB_ID = 'cb3bacc7-4254-414c-9610-f2dde41352e1'
 
