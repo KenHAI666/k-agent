@@ -50,6 +50,126 @@ function pageToPost(page) {
   }
 }
 
+// ── 抓 Notion 最近發文當語氣參考 ──────────────────────
+
+async function fetchNotionReference(limit = 8) {
+  try {
+    const resp = await notion.databases.query({
+      database_id: DB_ID,
+      filter: {
+        and: [
+          { property: '狀態', select: { equals: '已發' } },
+          { property: '天數', number: { greater_than: 0 } },
+        ]
+      },
+      sorts: [{ property: '發文時間', direction: 'descending' }],
+      page_size: limit,
+    })
+    return resp.results.map(pageToPost).filter(p => p.content.length > 10)
+  } catch {
+    return []
+  }
+}
+
+// ── 統計：全庫計數 ────────────────────────────────────
+
+async function getStats() {
+  const all = []
+  let cursor
+
+  do {
+    const resp = await notion.databases.query({
+      database_id: DB_ID,
+      filter: { property: '天數', number: { greater_than: 0 } },
+      page_size: 100,
+      ...(cursor ? { start_cursor: cursor } : {}),
+    })
+    all.push(...resp.results.map(pageToPost))
+    cursor = resp.has_more ? resp.next_cursor : undefined
+  } while (cursor)
+
+  const stats = {
+    total: all.length,
+    byType:   { 個人定位: 0, 知識: 0, 銷售: 0 },
+    byStatus: { 草稿: 0, 待發: 0, 排程中: 0, 已發: 0, 略過: 0 },
+    updatedAt: new Date().toISOString(),
+  }
+
+  for (const p of all) {
+    if (stats.byType[p.type]   !== undefined) stats.byType[p.type]++
+    if (stats.byStatus[p.status] !== undefined) stats.byStatus[p.status]++
+  }
+
+  return stats
+}
+
+// ── Notion 統計看板（天數=0 的特殊條目） ──────────────
+
+let _statsEntryId = null
+
+async function getOrCreateStatsEntry() {
+  if (_statsEntryId) return _statsEntryId
+
+  const resp = await notion.databases.query({
+    database_id: DB_ID,
+    filter: { property: '天數', number: { equals: 0 } },
+    page_size: 1,
+  })
+
+  if (resp.results.length > 0) {
+    _statsEntryId = resp.results[0].id
+    return _statsEntryId
+  }
+
+  const page = await notion.pages.create({
+    parent: { database_id: DB_ID },
+    properties: {
+      '標題': { title: [{ text: { content: '📊 文案統計看板' } }] },
+      '天數': { number: 0 },
+      '狀態': { select: { name: '草稿' } },
+    },
+  })
+  _statsEntryId = page.id
+  console.log('[統計] 已建立統計看板條目：', _statsEntryId)
+  return _statsEntryId
+}
+
+async function updateNotionStats(stats) {
+  try {
+    const id = await getOrCreateStatsEntry()
+    const now = new Date().toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' })
+
+    const lines = [
+      `更新時間：${now}`,
+      ``,
+      `📝 總文案數：${stats.total} 篇`,
+      ``,
+      `── 依類型 ──`,
+      `👤 個人定位：${stats.byType['個人定位']} 篇`,
+      `💎 知識：${stats.byType['知識']} 篇`,
+      `🎯 銷售：${stats.byType['銷售']} 篇`,
+      ``,
+      `── 依狀態 ──`,
+      `✏️  草稿：${stats.byStatus['草稿']} 篇`,
+      `⏰ 待發：${stats.byStatus['待發']} 篇`,
+      `📅 排程中：${stats.byStatus['排程中']} 篇`,
+      `✅ 已發：${stats.byStatus['已發']} 篇`,
+      `⏭️  略過：${stats.byStatus['略過']} 篇`,
+    ].join('\n')
+
+    await notion.pages.update({
+      page_id: id,
+      properties: {
+        '標題':    { title: [{ text: { content: '📊 文案統計看板' } }] },
+        '主題方向': { rich_text: [{ text: { content: lines } }] },
+      },
+    })
+    console.log('[統計] Notion 統計看板已更新')
+  } catch (e) {
+    console.warn('[統計] 更新失敗：', e.message)
+  }
+}
+
 // ── API：取得某天的貼文 ────────────────────────────────
 
 app.get('/api/posts/:day', async (req, res) => {
@@ -92,6 +212,8 @@ app.post('/api/publish/:id', async (req, res) => {
     const page = await notion.pages.retrieve({ page_id: req.params.id })
     const post = pageToPost(page)
     const threadId = await publishToThreads(post)
+    // 發文後更新統計
+    getStats().then(s => updateNotionStats(s)).catch(() => {})
     res.json({ ok: true, threadId })
   } catch (err) {
     res.status(500).json({ error: err.message })
@@ -105,6 +227,17 @@ app.post('/api/generate/:day', async (req, res) => {
   try {
     const posts = await generateDayPosts(day)
     res.json({ ok: true, count: posts.length, posts })
+  } catch (err) {
+    res.status(500).json({ error: err.message })
+  }
+})
+
+// ── API：統計 ─────────────────────────────────────────
+
+app.get('/api/stats', async (req, res) => {
+  try {
+    const stats = await getStats()
+    res.json(stats)
   } catch (err) {
     res.status(500).json({ error: err.message })
   }
@@ -142,7 +275,14 @@ async function generateDayPosts(day) {
   const identity = loadRef('IDENTITY.md')
   const history  = loadRef('THREADS_21DAY_V1.md')
 
-  // 依天數判斷所在週次與階段
+  // 從 Notion 抓最近發過的文當語氣參考
+  const notionRef = await fetchNotionReference(8)
+  const notionRefText = notionRef.length > 0
+    ? notionRef.map((p, i) =>
+        `【Notion 參考 ${i + 1}｜${p.type}｜${p.title}】\n${p.content}`
+      ).join('\n\n')
+    : ''
+
   const week  = Math.ceil(day / 7)
   const phase = week === 1 ? '被看見（人設 60% / 觀點 40%）'
               : week === 2 ? '建立信任（人設 40% / 價值 40% / 商品 20%）'
@@ -161,10 +301,12 @@ ${agents}
 ## 行為規則
 ${rules}
 
-## 歷史貼文語氣參考（請對照維持一致）
-${history.slice(0, 3000)}
+## 歷史貼文語氣參考（21天存檔）
+${history.slice(0, 2000)}
 
-## 規則
+${notionRefText ? `## Notion 最近實際發出的貼文（語氣最優先參考）\n${notionRefText}` : ''}
+
+## 生成規則
 - 句子短，口語，不說「您」
 - 不堆砌形容詞，不像 AI 說話
 - 關鍵詞維持：海巡 / 以終為始 / 信任漏斗 / 看見→信任→變現 / 脆友
@@ -201,7 +343,6 @@ ${history.slice(0, 3000)}
   if (raw.startsWith('```')) raw = raw.replace(/```json\n?|```/g, '').trim()
   const drafts = JSON.parse(raw)
 
-  // 預設發文時間（台北時間 08:00 / 12:00 / 15:30 / 18:30 / 21:00）
   const times = ['T00:00:00+00:00', 'T04:00:00+00:00', 'T07:30:00+00:00', 'T10:30:00+00:00', 'T13:00:00+00:00']
   const today = new Date().toISOString().slice(0, 10)
 
@@ -224,7 +365,11 @@ ${history.slice(0, 3000)}
     created.push(pageToPost(page))
   }
 
-  console.log(`[AI 生文] DAY-${day} 完成，共 ${created.length} 篇`)
+  console.log(`[AI 生文] DAY-${day} 完成，共 ${created.length} 篇（參考了 ${notionRef.length} 篇 Notion 歷史文）`)
+
+  // 生完後非同步更新 Notion 統計看板
+  getStats().then(s => updateNotionStats(s)).catch(() => {})
+
   return created
 }
 
@@ -270,4 +415,6 @@ app.listen(PORT, () => {
   console.log(`\n🚀 AI_K叔 發文台：http://localhost:${PORT}`)
   console.log(`   每天 06:00 自動生成新文案`)
   console.log(`   排程發文每分鐘掃描中\n`)
+  // 啟動時初始化統計看板
+  getStats().then(s => updateNotionStats(s)).catch(() => {})
 })
