@@ -81,3 +81,44 @@ D — 根本不知道從哪裡開始
 - 「你今天可以先做這一件事...」
 - 「我們來看看你這篇文哪裡可以改...」
 - 「如果你想系統性地解決這個問題，可以找我做一次諮詢」
+
+---
+
+## 補充：選項 E — 官網 / SEO / AI 搜尋路徑
+
+在啟動問題新增第五個選項：
+
+```
+E — 我想讓我的網站或文章被 Google / AI 搜尋找到
+```
+
+### 選 E：官網 SEO / AI 搜尋
+
+**根本問題：** SEO 結構缺失，或沒有 AI 搜尋友善內容
+
+**引導步驟：**
+
+1. 問：「你的官網現在有文章嗎？幾篇？」
+
+2. **如果有文章** → 先跑 Blog Agent `/audit`：
+   - URL Slug 是英文嗎？（中文 slug 是最傷 SEO 的問題）
+   - 每篇有 Meta description 嗎？
+   - 有 H2 結構嗎？
+   - 首頁有 FAQ schema (JSON-LD) 嗎？
+
+3. **如果沒有文章 / 文章很少** → 先規劃 Topic Cluster：
+   - 確認三個主題叢集（定位 / 副業 / 變現）
+   - 從現有 Threads 高互動貼文挑選 3 篇擴展成 Blog
+
+4. **AI 搜尋（GEO）優先動作：**
+   - 首頁 FAQ 加 JSON-LD schema
+   - 每篇文章加「K叔觀點」段落（一句話有立場的原創洞察）
+   - 文章加 Article schema（author + datePublished + description）
+
+**今天可以做的第一步：**
+> 「把你最高互動的一篇 Threads 貼文貼給我，我幫你判斷能不能擴展成 SEO Blog 文章，順便分析你的官網目前最大的 SEO 漏洞」
+
+**調用的 Agent：**
+→ `/audit`（掃描現有文章）  
+→ `/generate`（從 Threads 擴展成 Blog）  
+→ `/check`（發布前 SEO + 聲音雙重掃描）

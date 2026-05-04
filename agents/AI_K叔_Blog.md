@@ -254,3 +254,166 @@ Hook 強度：強 / 中 / 弱
 ---
 
 *AI_K叔_Blog v1.1 | 必須搭配 AI_K叔 核心 md + AK-Threads-booster SKILL 使用*
+
+---
+
+## Topic Cluster 架構（K叔三大主題叢集）
+
+> Blog 不是線性發文，是主題叢集。每個 Cluster 有一篇「主幹文章（Pillar）」和多篇「支撐文章（Cluster Posts）」互相連結。
+
+### Cluster 1：自媒體定位與入門
+
+**Pillar（主幹）：** 「上班族從零開始做自媒體的完整指南」
+
+支撐文章（Cluster Posts）：
+- 不露臉也能做自媒體（3個困境與5步心法）
+- 零粉絲如何找到第一批受眾（PDCA 流程）
+- Threads vs Instagram vs Blog：上班族該選哪個平台
+- 自媒體不是先發文，是先設計商品
+
+**目標關鍵字群：** 自媒體入門、怎麼開始自媒體、上班族做自媒體
+
+---
+
+### Cluster 2：副業與斜槓
+
+**Pillar（主幹）：** 「上班族不離職做副業的完整路線圖」
+
+支撐文章（Cluster Posts）：
+- 上班族比創業者更危險？一人公司風險管理
+- 為什麼 90% 上班族裸辭也沒用
+- 不離職創業指南：如何成為「薪水小偷」
+- 碎片時間如何開始建立第二收入
+
+**目標關鍵字群：** 上班族副業、斜槓副業、不離職創業、在職兼職
+
+---
+
+### Cluster 3：內容變現
+
+**Pillar（主幹）：** 「自媒體變現完整路徑：從流量到穩定收入」
+
+支撐文章（Cluster Posts）：
+- 自媒體變現的三個階段（被看見 → 信任 → 成交）
+- 電子書從零到上架的完整流程
+- 一對一諮詢怎麼定價？
+- 信任漏斗怎麼設計（不是單靠流量）
+
+**目標關鍵字群：** 自媒體變現、知識變現、內容創作收入
+
+---
+
+### 內部連結規則
+
+```
+每篇 Cluster Post 必須：
+  → 連回 Pillar 主幹文章（錨文本含主關鍵字）
+  → 連到 1 篇相關 Cluster Post
+  → 連到至少 1 個商品頁（陪跑 or 電子書）
+
+Pillar 主幹文章必須：
+  → 連到所有 Cluster Posts（在適當段落自然插入）
+```
+
+---
+
+## GEO — AI 搜尋優化（Generative Engine Optimization）
+
+> 目標：讓 ChatGPT Search / Perplexity / Gemini 在回答相關問題時引用 K叔的內容
+
+### AI 搜尋的引用偏好
+
+AI 搜尋引擎偏好引用以下類型的內容：
+
+1. **清晰的定義句** — 一句話說清楚「X 是什麼」
+2. **有具體數字的主張** — 「根據 1,598 篇數據分析，純文字貼文平均觸及比圖文高出 XX 倍」
+3. **有作者立場的原創觀點** — 不是人人都說的通識，是 K叔自己的結論
+4. **FAQ 結構內容** — 問答格式被 AI 直接擷取的機率最高
+
+### 每篇 Blog 必須有的「K叔觀點」段落
+
+在每篇文章中插入一個明確標示的觀點段落：
+
+```markdown
+> **K叔的觀點：**
+> 我做自媒體第 [X] 年，踩過 [具體失敗]。
+> 我的結論是：[一句話核心洞察]。
+> 這不是理論，是我 [具體行動] 換來的。
+```
+
+這個段落的目的：
+- 提供 AI 可直接引用的原創立場
+- 強化 E-E-A-T（Experience 實際經驗信號）
+- 讓文章從知識型變成「有人味的知識型」
+
+### JSON-LD 結構化資料（每篇文章必須包含）
+
+在 Jekyll layout 中加入 Article schema：
+
+```html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "{{ page.title }}",
+  "description": "{{ page.description }}",
+  "author": {
+    "@type": "Person",
+    "name": "K叔",
+    "url": "https://runing9to5.com/about",
+    "sameAs": ["https://www.threads.net/@runing_9to5"]
+  },
+  "datePublished": "{{ page.date | date_to_xmlschema }}",
+  "dateModified": "{{ page.last_modified_at | date_to_xmlschema }}",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Runing9to5",
+    "url": "https://runing9to5.com"
+  }
+}
+</script>
+```
+
+首頁 FAQPage schema（首頁已有 10 個 FAQ，需加入此 schema）：
+
+```html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "經營自媒體要從哪裡開始？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "先別急著衝內容。建議採用「以終為始」——先設計商品，再回推內容。這樣每一篇發文才會有明確目的，而不是無頭蒼蠅亂飛。"
+      }
+    }
+  ]
+}
+</script>
+```
+
+> 注意：首頁所有 10 個 FAQ 都要加進 mainEntity 陣列
+
+---
+
+## AK-Threads-booster 在 Blog 的適用說明
+
+Blog Agent 依賴 AK-Threads-booster，但部分規則在 Blog 環境下有不同解釋：
+
+| 規則 | Threads 含義 | Blog 適用性 | Blog 解釋 |
+|------|-------------|------------|-----------|
+| R1 互動誘導 | 留言 YES / tag 朋友 | ❌ 不適用 | Blog 沒有這個問題 |
+| R2 標題誇大 | 第一句承諾無法兌現 | ✅ 適用 | Title tag 不能誇大 |
+| R3 首句不一致 | 開頭和內容脫節 | ✅ 適用 | Meta description 和內容要一致 |
+| R5 同主題同角度 | 連續相同角度新鮮度耗盡 | ⚠️ 調整 | Blog 同主題多篇是 Topic Cluster，是正確的——但每篇角度必須不同 |
+| R8 觸發不感興趣 | Threads 演算法信號 | ❌ 不適用 | Blog 無此演算法概念 |
+| R10 AI 腔未揭露 | 內容 100% AI 語氣 | ✅ 適用 | Blog 同樣需要注入個人故事 |
+| AI 腔偵測 | 所有偵測邏輯 | ✅ 完全適用 | Blog 比 Threads 更需要品牌聲音 |
+| Hook 框架 | 開頭停下來的邏輯 | ✅ 完全適用 | Blog 引言第一段就是 Hook |
+
+---
+
+*AI_K叔_Blog v1.2 | 新增 Topic Cluster + GEO + JSON-LD + AK-Threads 適用說明*
