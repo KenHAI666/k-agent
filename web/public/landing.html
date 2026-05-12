@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每天發文不知道寫什麼？用三大心法讓內容自己變現 — K叔</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&family=Noto+Sans+TC:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --cream:        #F5F0EA;
+  --cream-light:  #FAF8F5;
+  --cream-dark:   #EDE8E0;
+  --navy:         #1A2540;
+  --navy-mid:     #2D4A7A;
+  --navy-light:   #3D4F6E;
+  --muted:        #8896AA;
+  --accent-blue:  #E4ECF8;
+  --accent-warm:  #F5EDE3;
+  --white:        #FFFFFF;
+  --amber:        #B8600A;
+  --amber-light:  #FDECD4;
+  --green:        #2A7A4A;
+  --green-light:  #D4ECD4;
+  --rule:         #DDE3EC;
+  --shadow:       0 1px 4px rgba(26,37,64,0.08);
+  --shadow-md:    0 4px 16px rgba(26,37,64,0.10);
+  --serif:        'Noto Serif TC', Georgia, serif;
+  --sans:         'Noto Sans TC', system-ui, sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  background: var(--cream);
+  color: var(--navy);
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── UTILITIES ── */
+.wrap    { max-width: 860px; margin: 0 auto; padding: 0 28px; }
+.wrap-sm { max-width: 640px; margin: 0 auto; padding: 0 28px; }
+.label {
+  font-size: 11px; font-weight: 700; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--navy-mid);
+  display: block; margin-bottom: 14px;
+}
+
+/* ── NAV ── */
+nav {
+  position: sticky; top: 0; z-index: 99;
+  background: rgba(250,248,245,0.95);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--cream-dark);
+  padding: 0 28px;
+  box-shadow: var(--shadow);
+}
+.nav-row {
+  max-width: 860px; margin: 0 auto;
+  display: flex; align-items: center;
+  justify-content: space-between;
+  height: 60px;
+}
+.brand {
+  display: flex; align-items: center; gap: 10px;
+}
+.brand-icon {
+  width: 32px; height: 32px;
+  background: var(--navy-mid); border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-size: 16px; font-weight: 700;
+  letter-spacing: -1px; flex-shrink: 0;
+}
+.brand-name {
+  font-family: var(--serif);
+  font-size: 16px; font-weight: 700; color: var(--navy);
+}
+.brand-sub {
+  font-size: 11px; color: var(--muted); font-weight: 400;
+}
+.nav-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--navy-mid); color: #fff;
+  font-family: var(--sans);
+  font-size: 13px; font-weight: 600;
+  padding: 9px 20px; border-radius: 8px;
+  text-decoration: none;
+  transition: background .2s;
+}
+.nav-btn:hover { background: var(--navy); }
+
+/* ── HERO ── */
+.hero {
+  padding: 96px 28px 80px;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 70% 60% at 80% 30%, rgba(228,236,248,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-inner {
+  max-width: 860px; margin: 0 auto;
+  position: relative; z-index: 1;
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 12px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase;
+  background: rgba(228,236,248,0.15);
+  border: 1px solid rgba(228,236,248,0.25);
+  color: #E4ECF8;
+  padding: 6px 16px; border-radius: 20px;
+  margin-bottom: 32px;
+}
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(34px, 5.5vw, 58px);
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.22;
+  letter-spacing: -0.5px;
+  margin-bottom: 24px;
+  max-width: 680px;
+}
+.hero h1 em {
+  font-style: normal;
+  color: #93B8F0;
+}
+.hero-desc {
+  font-size: 17px; line-height: 1.85;
+  color: rgba(228,236,248,0.75);
+  max-width: 520px;
+  margin-bottom: 48px;
+}
+.hero-desc strong { color: rgba(255,255,255,0.95); }
+
+/* Form embed zone */
+.form-zone {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(228,236,248,0.2);
+  border-radius: 12px;
+  padding: 32px 32px 28px;
+  max-width: 540px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+}
+.form-zone-title {
+  font-size: 14px; font-weight: 700;
+  color: rgba(255,255,255,0.9);
+  margin-bottom: 20px;
+  display: flex; align-items: center; gap: 8px;
+}
+.form-zone-title::before {
+  content: '✦'; color: #93B8F0; font-size: 12px;
+}
+
+/* ── SYSTEME.IO EMBED 替換說明 ── */
+.embed-placeholder {
+  background: rgba(228,236,248,0.06);
+  border: 1px dashed rgba(228,236,248,0.25);
+  border-radius: 8px;
+  padding: 28px;
+  text-align: center;
+}
+.embed-placeholder code {
+  font-size: 12px; color: rgba(255,255,255,0.35);
+  display: block; margin-bottom: 8px;
+  font-family: 'Courier New', monospace;
+}
+.embed-placeholder p {
+  font-size: 13px; color: rgba(255,255,255,0.4);
+}
+.form-guarantee {
+  margin-top: 14px;
+  font-size: 12px; color: rgba(228,236,248,0.4);
+  display: flex; align-items: center; gap: 6px;
+}
+.form-guarantee::before { content: '🔒'; font-size: 11px; }
+
+.hero-proof {
+  margin-top: 52px;
+  display: flex; align-items: center; gap: 24px;
+  flex-wrap: wrap;
+}
+.proof-divider {
+  width: 1px; height: 32px;
+  background: rgba(228,236,248,0.15);
+}
+.proof-item {
+  font-size: 13px; color: rgba(228,236,248,0.5);
+}
+.proof-item strong {
+  display: block;
+  font-size: 24px; font-weight: 800;
+  color: rgba(255,255,255,0.95);
+  line-height: 1.2;
+}
+
+/* ── SECTION HEADER ── */
+.section-h2 {
+  font-family: var(--serif);
+  font-size: clamp(26px, 4vw, 38px);
+  font-weight: 700; line-height: 1.35;
+  margin-bottom: 8px; color: var(--navy);
+}
+.section-intro {
+  font-size: 17px; color: var(--muted);
+  margin-bottom: 52px; max-width: 520px;
+}
+
+/* ── PAIN SECTION ── */
+.pain-section { padding: 88px 0; background: var(--white); }
+.pain-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+@media(max-width:580px){ .pain-grid { grid-template-columns: 1fr; } }
+.pain-cell {
+  background: var(--cream-light);
+  border: 1px solid var(--cream-dark);
+  border-radius: 12px;
+  padding: 28px;
+  transition: box-shadow .2s, transform .2s;
+}
+.pain-cell:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.pain-num {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 2px; color: var(--muted);
+  margin-bottom: 10px;
+}
+.pain-cell h3 {
+  font-size: 17px; font-weight: 700;
+  margin-bottom: 8px; line-height: 1.4;
+  color: var(--navy);
+}
+.pain-cell p { font-size: 14px; color: var(--muted); line-height: 1.7; }
+
+/* ── PRINCIPLES ── */
+.principles-section { padding: 88px 0; background: var(--cream); }
+.principle-block {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 0 28px;
+  padding: 40px 0;
+  border-top: 1px solid var(--rule);
+  align-items: start;
+}
+.principle-block:last-child { border-bottom: 1px solid var(--rule); }
+.p-num {
+  font-family: var(--serif);
+  font-size: 48px; font-weight: 900;
+  color: var(--rule);
+  line-height: 1;
+  margin-top: -4px;
+}
+.p-tag {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--navy-mid); margin-bottom: 10px;
+}
+.p-body h3 {
+  font-family: var(--serif);
+  font-size: 22px; font-weight: 700;
+  margin-bottom: 12px; line-height: 1.3;
+  color: var(--navy);
+}
+.p-body p { font-size: 15px; color: var(--muted); line-height: 1.85; margin-bottom: 16px; }
+.p-quote {
+  font-family: var(--serif);
+  font-size: 15px; font-style: italic;
+  color: var(--navy-light);
+  border-left: 3px solid var(--navy-mid);
+  padding-left: 16px;
+  margin: 16px 0;
+}
+.p-email-hint {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 13px; font-weight: 600;
+  color: var(--navy-mid);
+  background: var(--accent-blue);
+  padding: 6px 14px; border-radius: 6px;
+  border: 1px solid rgba(45,74,122,0.15);
+}
+.p-email-hint::before { content: '📧'; font-size: 13px; }
+
+/* ── STATS STRIP ── */
+.stats-strip {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+  padding: 60px 28px;
+}
+.stats-row {
+  max-width: 860px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 0;
+}
+.stat-cell {
+  text-align: center;
+  padding: 12px;
+  border-right: 1px solid rgba(228,236,248,0.15);
+}
+.stat-cell:last-child { border-right: none; }
+.stat-n {
+  font-family: var(--serif);
+  font-size: 44px; font-weight: 900;
+  color: #93B8F0;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.stat-n sup { font-size: 22px; }
+.stat-l { font-size: 13px; color: rgba(228,236,248,0.5); }
+
+/* ── WHAT YOU GET ── */
+.offer-section { padding: 88px 0; background: var(--white); }
+.offer-card {
+  border: 1px solid var(--cream-dark);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow);
+  transition: box-shadow .2s;
+}
+.offer-card:hover { box-shadow: var(--shadow-md); }
+.offer-card-head {
+  background: var(--cream-light);
+  padding: 20px 24px;
+  display: flex; align-items: center; gap: 16px;
+  border-bottom: 1px solid var(--cream-dark);
+}
+.offer-icon {
+  width: 44px; height: 44px;
+  border-radius: 8px;
+  background: var(--navy-mid);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; flex-shrink: 0;
+}
+.offer-card-head h3 {
+  font-size: 16px; font-weight: 700; line-height: 1.3;
+  color: var(--navy);
+}
+.offer-card-head p {
+  font-size: 13px; color: var(--muted); margin-top: 2px;
+}
+.offer-card-body {
+  padding: 20px 24px;
+  background: var(--white);
+}
+.offer-card-body p { font-size: 15px; color: var(--muted); line-height: 1.85; }
+.offer-check-list {
+  list-style: none; margin-top: 14px;
+}
+.offer-check-list li {
+  font-size: 14px; color: var(--navy-light);
+  padding: 7px 0;
+  border-bottom: 1px solid var(--cream-dark);
+  display: flex; align-items: flex-start; gap: 10px;
+  line-height: 1.6;
+}
+.offer-check-list li:last-child { border-bottom: none; }
+.offer-check-list li::before {
+  content: '✓';
+  color: var(--green); font-weight: 700;
+  font-size: 13px; margin-top: 2px; flex-shrink: 0;
+}
+
+/* ── SEQUENCE TIMELINE ── */
+.seq-section { padding: 88px 0; background: var(--cream); }
+.timeline { position: relative; }
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 23px; top: 16px; bottom: 16px;
+  width: 2px; background: var(--cream-dark);
+}
+.tl-item {
+  display: flex; gap: 24px;
+  margin-bottom: 20px;
+  align-items: flex-start;
+}
+.tl-dot-wrap {
+  flex-shrink: 0;
+  width: 48px; height: 48px;
+  background: var(--white);
+  border: 2px solid var(--cream-dark);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 800;
+  color: var(--navy-mid);
+  position: relative; z-index: 1;
+}
+.tl-item:hover .tl-dot-wrap {
+  border-color: var(--navy-mid);
+  background: var(--accent-blue);
+}
+.tl-card {
+  flex: 1;
+  background: var(--white);
+  border: 1px solid var(--cream-dark);
+  border-radius: 12px;
+  padding: 22px 24px;
+  box-shadow: var(--shadow);
+  transition: box-shadow .2s, transform .2s;
+}
+.tl-item:hover .tl-card {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.tl-day {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--navy-mid); margin-bottom: 6px;
+}
+.tl-card h3 {
+  font-size: 17px; font-weight: 700;
+  line-height: 1.35; margin-bottom: 6px;
+  color: var(--navy);
+}
+.tl-card .tl-desc {
+  font-size: 14px; color: var(--muted);
+  margin-bottom: 14px;
+}
+.topic-box {
+  background: var(--cream-light);
+  border: 1px solid var(--cream-dark);
+  border-radius: 8px;
+  padding: 14px 16px;
+}
+.topic-box-title {
+  font-size: 12px; font-weight: 700;
+  color: var(--navy-light); margin-bottom: 8px;
+  display: flex; align-items: center; gap: 6px;
+}
+.topic-list {
+  list-style: none; display: flex; flex-direction: column; gap: 5px;
+}
+.topic-list li {
+  font-size: 13px; color: var(--navy-light);
+  padding-left: 16px;
+  position: relative; line-height: 1.5;
+}
+.topic-list li::before {
+  content: attr(data-n);
+  position: absolute; left: 0;
+  color: var(--navy-mid); font-weight: 700;
+}
+
+/* ── HOW IT WORKS ── */
+.how-section { padding: 88px 0; background: var(--white); }
+.steps-row {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 12px;
+}
+@media(max-width:640px){ .steps-row { grid-template-columns: 1fr; } }
+.step-cell {
+  background: var(--cream-light);
+  border: 1px solid var(--cream-dark);
+  border-radius: 12px;
+  padding: 32px 24px;
+  box-shadow: var(--shadow);
+  transition: box-shadow .2s, transform .2s;
+}
+.step-cell:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.step-n {
+  font-family: var(--serif);
+  font-size: 36px; font-weight: 900;
+  color: var(--accent-blue); line-height: 1;
+  margin-bottom: 14px;
+  -webkit-text-stroke: 1px var(--navy-mid);
+}
+.step-cell h3 {
+  font-size: 16px; font-weight: 700;
+  margin-bottom: 8px; color: var(--navy);
+}
+.step-cell p { font-size: 14px; color: var(--muted); line-height: 1.7; }
+
+/* ── WHO IS THIS FOR ── */
+.who-section {
+  padding: 88px 0;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+}
+.who-section .label { color: #93B8F0; }
+.who-section .section-h2 { color: #fff; }
+.who-section .section-intro { color: rgba(228,236,248,0.55); }
+.who-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+@media(max-width:580px){ .who-grid { grid-template-columns: 1fr; } }
+.who-yes, .who-no {
+  border-radius: 12px; padding: 28px;
+}
+.who-yes {
+  background: rgba(42,122,74,0.12);
+  border: 1px solid rgba(42,122,74,0.3);
+}
+.who-no {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(228,236,248,0.12);
+}
+.who-title {
+  font-size: 13px; font-weight: 700;
+  margin-bottom: 16px;
+}
+.who-yes .who-title { color: #6DD6A0; }
+.who-no  .who-title { color: rgba(228,236,248,0.5); }
+.who-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.who-list li {
+  font-size: 14px; color: rgba(228,236,248,0.75);
+  display: flex; align-items: flex-start; gap: 10px;
+  line-height: 1.6;
+}
+.who-yes .who-list li::before { content: '✓'; color: #6DD6A0; font-weight: 700; flex-shrink: 0; }
+.who-no  .who-list li::before { content: '✗'; color: rgba(228,236,248,0.3); font-weight: 700; flex-shrink: 0; }
+
+/* ── ABOUT ── */
+.about-section { padding: 88px 0; background: var(--cream); }
+.about-inner {
+  display: grid; grid-template-columns: 1fr 2fr;
+  gap: 52px; align-items: start;
+}
+@media(max-width:640px){ .about-inner { grid-template-columns: 1fr; } }
+.about-avatar {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+  border-radius: 12px;
+  padding: 32px;
+  text-align: center;
+  box-shadow: var(--shadow-md);
+}
+.avatar-icon { font-size: 64px; margin-bottom: 12px; }
+.avatar-name {
+  font-family: var(--serif);
+  font-size: 18px; font-weight: 700; color: #fff;
+  margin-bottom: 4px;
+}
+.avatar-handle { font-size: 13px; color: #93B8F0; }
+.about-text h2 {
+  font-family: var(--serif);
+  font-size: 28px; font-weight: 700;
+  margin-bottom: 16px; line-height: 1.3;
+  color: var(--navy);
+}
+.about-text p {
+  font-size: 15px; color: var(--muted);
+  line-height: 1.85; margin-bottom: 14px;
+}
+.about-cred-list {
+  list-style: none; margin-top: 20px;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.about-cred-list li {
+  font-size: 14px; color: var(--navy-light);
+  display: flex; align-items: flex-start; gap: 10px;
+}
+.about-cred-list li::before {
+  content: '▸'; color: var(--navy-mid); flex-shrink: 0;
+}
+
+/* ── CTA SECTION ── */
+.cta-section {
+  padding: 96px 28px;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+  text-align: center;
+  position: relative; overflow: hidden;
+}
+.cta-section::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(228,236,248,0.06) 0%, transparent 70%);
+}
+.cta-inner { position: relative; z-index: 1; max-width: 620px; margin: 0 auto; }
+.cta-section .cta-label {
+  font-size: 11px; font-weight: 700; letter-spacing: 3px;
+  text-transform: uppercase; color: #93B8F0;
+  display: block; margin-bottom: 14px;
+}
+.cta-section h2 {
+  font-family: var(--serif);
+  font-size: clamp(28px, 5vw, 46px);
+  font-weight: 900; color: #fff;
+  line-height: 1.25; margin-bottom: 16px;
+}
+.cta-section h2 em { font-style: normal; color: #93B8F0; }
+.cta-section .desc {
+  font-size: 17px; color: rgba(228,236,248,0.6);
+  margin-bottom: 44px; line-height: 1.7;
+}
+.cta-form-zone {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(228,236,248,0.15);
+  border-radius: 12px;
+  padding: 32px;
+  max-width: 480px;
+  margin: 0 auto 20px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+}
+.cta-form-zone .form-zone-title {
+  color: rgba(255,255,255,0.85); margin-bottom: 20px;
+}
+.cta-checklist {
+  display: flex; justify-content: center;
+  gap: 24px; flex-wrap: wrap;
+  margin-top: 20px;
+}
+.cta-checklist span {
+  font-size: 13px; color: rgba(228,236,248,0.45);
+  display: flex; align-items: center; gap: 5px;
+}
+.cta-checklist span::before { content: '✓'; color: #93B8F0; }
+
+/* ── FAQ ── */
+.faq-section { padding: 88px 0; background: var(--white); }
+.faq-section .section-h2 { margin-bottom: 48px; }
+.faq-item { border-top: 1px solid var(--cream-dark); }
+.faq-item:last-child { border-bottom: 1px solid var(--cream-dark); }
+.faq-q {
+  width: 100%; background: none; border: none;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 22px 0; cursor: pointer; text-align: left;
+  font-family: var(--sans);
+  font-size: 16px; font-weight: 600; color: var(--navy);
+  gap: 20px;
+}
+.faq-q .icon {
+  flex-shrink: 0; width: 28px; height: 28px;
+  border: 1px solid var(--cream-dark); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; color: var(--muted);
+  transition: all .25s; line-height: 1;
+}
+.faq-q.open .icon {
+  background: var(--navy-mid); border-color: var(--navy-mid);
+  color: #fff; transform: rotate(45deg);
+}
+.faq-a {
+  max-height: 0; overflow: hidden;
+  transition: max-height .35s ease, padding .3s;
+  font-size: 15px; color: var(--muted); line-height: 1.8;
+}
+.faq-a.open { max-height: 400px; padding-bottom: 22px; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--navy);
+  padding: 36px 28px;
+  text-align: center;
+}
+.footer-inner { max-width: 860px; margin: 0 auto; }
+.footer-brand {
+  font-family: var(--serif);
+  font-size: 20px; font-weight: 700; color: #fff;
+  margin-bottom: 8px;
+}
+.footer-sub { font-size: 13px; color: rgba(228,236,248,0.3); }
+.footer-sub a { color: rgba(228,236,248,0.4); text-decoration: none; }
+.footer-sub a:hover { color: #93B8F0; }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-eyebrow { animation: fadeUp .5s ease-out both; }
+.hero h1      { animation: fadeUp .5s .1s ease-out both; }
+.hero-desc    { animation: fadeUp .5s .2s ease-out both; }
+.form-zone    { animation: fadeUp .5s .3s ease-out both; }
+.hero-proof   { animation: fadeUp .5s .4s ease-out both; }
+
+@media(max-width:640px) {
+  .about-inner { grid-template-columns: 1fr; }
+  .steps-row { grid-template-columns: 1fr; }
+  .hero { padding: 64px 20px 56px; }
+  .form-zone { padding: 24px 20px 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-row">
+    <div class="brand">
+      <div class="brand-icon">K</div>
+      <div>
+        <div class="brand-name">K叔</div>
+        <div class="brand-sub">@runing_9to5</div>
+      </div>
+    </div>
+    <a href="#cta" class="nav-btn">免費領取 →</a>
+  </div>
+</nav>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     HERO
+══════════════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-inner">
+    <span class="hero-eyebrow">🎁 免費資源・限時開放</span>
+    <h1>每天發文<br>不知道寫什麼？<br>用<em>三大心法</em>，<br>讓內容自己變現</h1>
+    <p class="hero-desc">
+      訂閱後你會收到《自媒體變現三大核心心法》完整 PDF<br>
+      <strong>＋ 連續 5 天，每天 5 個寫作主題直送信箱</strong><br>
+      讓你再也不用煩惱「今天寫什麼」
+    </p>
+
+    <!-- ============================================================
+         ★ 在這裡替換 systeme.io 的 inline form script ★
+
+         做法：
+         1. 在 systeme.io → Funnels → 選你的 Funnel
+         2. 點「Add Step」→ 選「Inline Form」
+         3. 設定好表單後 → 點「Script」按鈕
+         4. 複製生成的 <script> 代碼
+         5. 把下面的 embed-placeholder 整個 div 刪掉
+         6. 把複製的 <script> 貼在這裡
+         ============================================================ -->
+
+    <div class="form-zone" id="hero-form">
+      <div class="form-zone-title">輸入 Email，立即免費領取</div>
+
+      <!-- 替換區：把下方 div.embed-placeholder 換成你的 systeme.io script -->
+      <div class="embed-placeholder">
+        <code>&lt;!-- 貼上你的 systeme.io inline form script --&gt;</code>
+        <p>在 systeme.io 建好 Inline Form 後，點 Script → 複製 → 貼到這裡</p>
+      </div>
+
+      <p class="form-guarantee">完全免費・不寄垃圾信・隨時可取消訂閱</p>
+    </div>
+
+    <div class="hero-proof">
+      <div class="proof-item">
+        <strong>1,500<sup>+</sup></strong>
+        Threads 貼文實戰
+      </div>
+      <div class="proof-divider"></div>
+      <div class="proof-item">
+        <strong>25</strong>
+        個寫作主題直送
+      </div>
+      <div class="proof-divider"></div>
+      <div class="proof-item">
+        <strong>5</strong>
+        天序列信免費領
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     PAIN POINTS
+══════════════════════════════════════════════════════════ -->
+<section class="pain-section">
+  <div class="wrap">
+    <span class="label">你是不是也這樣</span>
+    <h2 class="section-h2">每次打開手機想發文<br>卻盯著螢幕發呆 30 分鐘</h2>
+    <p class="section-intro">不是你不夠努力，而是你沒有系統。</p>
+    <div class="pain-grid">
+      <div class="pain-cell">
+        <div class="pain-num">01</div>
+        <h3>靈感枯竭</h3>
+        <p>每天硬想主題，腦袋一片空白，最後乾脆不發了。這不是懶，是沒有框架。</p>
+      </div>
+      <div class="pain-cell">
+        <div class="pain-num">02</div>
+        <h3>發了沒人看</h3>
+        <p>用心寫的文章只有個位數瀏覽，開始懷疑自己的內容是不是根本沒價值。</p>
+      </div>
+      <div class="pain-cell">
+        <div class="pain-num">03</div>
+        <h3>越學越亂</h3>
+        <p>看了一堆高手的教學，方法互相矛盾，不知道從哪個開始，反而原地踏步。</p>
+      </div>
+      <div class="pain-cell">
+        <div class="pain-num">04</div>
+        <h3>有流量沒收入</h3>
+        <p>粉絲慢慢在增加，但完全不知道怎麼把這些注意力轉換成真正的收入。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     3 PRINCIPLES
+══════════════════════════════════════════════════════════ -->
+<section class="principles-section">
+  <div class="wrap">
+    <span class="label">三大核心心法</span>
+    <h2 class="section-h2">從零到變現的完整路徑</h2>
+    <p class="section-intro">這份 PDF 拆解三個最關鍵的轉折點。每個心法，都對應 1-2 天的實戰寫作主題。</p>
+
+    <div class="principle-block">
+      <div class="p-num">1</div>
+      <div class="p-body">
+        <div class="p-tag">心法一</div>
+        <h3>以終為始 — 商品先於內容</h3>
+        <p>大部分人的第一步是「先發文累積粉絲」。但這是最大的陷阱。沒有方向的發文，就是沒有終點的旅行。</p>
+        <p>真正穩定變現的邏輯是反過來：先設計你要賣的東西，再去創造圍繞它的內容。這樣你寫的每一篇文，都有鋪陳價值的意義。</p>
+        <p class="p-quote">「沒有商品的內容，就是沒有方向的寫作。」</p>
+        <span class="p-email-hint">Day 1–2 的序列信會給你這個方向的寫作主題</span>
+      </div>
+    </div>
+
+    <div class="principle-block">
+      <div class="p-num">2</div>
+      <div class="p-body">
+        <div class="p-tag">心法二</div>
+        <h3>專賣店思維 — 讓價值一目了然</h3>
+        <p>你的帳號是「便利商店」還是「專賣店」？便利商店什麼都有，但顧客進來分不清你的價值。專賣店一眼就知道你能幫什麼忙。</p>
+        <p>精準定位三問：這群人是誰？他們的痛點是什麼？你的商品能怎麼幫他們？答完這三個，你的「招牌」就出來了。</p>
+        <p class="p-quote">「當你寫給所有人，就是在寫給沒人。」</p>
+        <span class="p-email-hint">Day 3 的序列信會給你定位方向的寫作主題</span>
+      </div>
+    </div>
+
+    <div class="principle-block">
+      <div class="p-num">3</div>
+      <div class="p-body">
+        <div class="p-tag">心法三</div>
+        <h3>先交朋友，再成交 — 用信任搭橋</h3>
+        <p>銷售不是推銷，而是信任的結果。沒有信任的成交頂多是一錘子買賣；有信任的成交才能長久。</p>
+        <p>三階段漏斗：看見（有趣有共鳴的內容）→ 信任（持續輸出有料又真誠）→ 成交（信任夠深，自然轉化）。還有一個黃金內容比例：3 篇人設文 × 2 篇知識文 × 1 篇銷售文。</p>
+        <p class="p-quote">「變現不是冰冷的交易，是溫暖的價值交換。」</p>
+        <span class="p-email-hint">Day 4–5 的序列信會給你信任建立的寫作主題</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     STATS
+══════════════════════════════════════════════════════════ -->
+<div class="stats-strip">
+  <div class="stats-row">
+    <div class="stat-cell">
+      <div class="stat-n">1,500<sup>+</sup></div>
+      <div class="stat-l">Threads 貼文實戰經驗</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-n">25</div>
+      <div class="stat-l">個寫作主題直送信箱</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-n">3</div>
+      <div class="stat-l">核心心法完整拆解</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     WHAT YOU GET
+══════════════════════════════════════════════════════════ -->
+<section class="offer-section">
+  <div class="wrap">
+    <span class="label">你會得到什麼</span>
+    <h2 class="section-h2">訂閱後你會收到</h2>
+    <p class="section-intro">不只是一份 PDF，而是一個讓你從今天開始能「有東西寫」的系統。</p>
+
+    <div class="offer-card">
+      <div class="offer-card-head">
+        <div class="offer-icon">📄</div>
+        <div>
+          <h3>《從零到變現：自媒體變現三大核心心法》完整 PDF</h3>
+          <p>訂閱後立即寄出・3 頁精華・可永久保存</p>
+        </div>
+      </div>
+      <div class="offer-card-body">
+        <p>拆解三個讓你從「亂槍打鳥」變成「有系統輸出」的核心邏輯。包含：商品設計思維、定位三問框架、信任漏斗拆解，以及黃金內容比例 3-2-1 法則。</p>
+      </div>
+    </div>
+
+    <div class="offer-card">
+      <div class="offer-card-head">
+        <div class="offer-icon">📧</div>
+        <div>
+          <h3>連續 5 天序列信・每天 5 個寫作主題</h3>
+          <p>打開信箱就知道今天寫什麼・Threads 直接可用</p>
+        </div>
+      </div>
+      <div class="offer-card-body">
+        <p>每封信 = 1 個核心觀念 + 5 個對應的 Threads 寫作主題。25 個主題全部可以直接拿來發文，寫完一輪你就把三大心法內化了。</p>
+        <ul class="offer-check-list">
+          <li>每個主題都對應一個心法，邊寫邊學，不是死記</li>
+          <li>從你的真實視角切入，不是硬套模板</li>
+          <li>每個主題都附角度提示，不會不知道怎麼展開</li>
+          <li>25 個主題夠你發一個月，再也不用每天硬想</li>
+          <li>全部 Threads 格式適配，直接貼上去就能發</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="offer-card">
+      <div class="offer-card-head">
+        <div class="offer-icon">🐱</div>
+        <div>
+          <h3>K叔的實戰觀察電子報</h3>
+          <p>序列信結束後持續送達・可隨時取消</p>
+        </div>
+      </div>
+      <div class="offer-card-body">
+        <p>5 天序列信結束後，你會進入我的電子報名單。我每週分享：自媒體經營的真實觀察、我自己踩過的坑、和新發現的有效方法。不是理論，全是做出來的東西。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     5-DAY SEQUENCE PREVIEW
+══════════════════════════════════════════════════════════ -->
+<section class="seq-section">
+  <div class="wrap">
+    <span class="label">5 天序列信內容預覽</span>
+    <h2 class="section-h2">你會收到的 5 封信</h2>
+    <p class="section-intro">每封信 = 1 個核心觀念 ＋ 5 個今日寫作主題。打開信箱，選 1 個，發出去。</p>
+
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-dot-wrap">D1</div>
+        <div class="tl-card">
+          <div class="tl-day">Day 1 · 心法一</div>
+          <h3>你不是沒能力，只是順序反了</h3>
+          <p class="tl-desc">為什麼「商品先於內容」是關鍵？大部分人都做反了。</p>
+          <div class="topic-box">
+            <div class="topic-box-title">📝 今日 5 個寫作主題</div>
+            <ul class="topic-list">
+              <li data-n="①">為什麼我發了 100 篇文還是不知道在幹嘛</li>
+              <li data-n="②">如果時間倒回，我會先做這件事</li>
+              <li data-n="③">自媒體新手最常犯的一個錯</li>
+              <li data-n="④">你的內容有「終點」嗎？</li>
+              <li data-n="⑤">沒有產品的創作者 vs 有產品的創作者</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot-wrap">D2</div>
+        <div class="tl-card">
+          <div class="tl-day">Day 2 · 心法一（進階）</div>
+          <h3>怎麼設計你的第一個商品</h3>
+          <p class="tl-desc">商品就是價值承諾：幫別人從 A 走到 B。三個問題幫你釐清。</p>
+          <div class="topic-box">
+            <div class="topic-box-title">📝 今日 5 個寫作主題</div>
+            <ul class="topic-list">
+              <li data-n="①">我的專業明明很強，為什麼沒人買單？</li>
+              <li data-n="②">你能幫別人跨過什麼「坑」？這就是你的商品</li>
+              <li data-n="③">熱情 × 專長 × 市場需求：三個問題檢視法</li>
+              <li data-n="④">為什麼「先有粉絲再想產品」是危險的</li>
+              <li data-n="⑤">我的第一個產品是怎麼誕生的（故事）</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot-wrap">D3</div>
+        <div class="tl-card">
+          <div class="tl-day">Day 3 · 心法二</div>
+          <h3>你的帳號是便利商店，還是專賣店？</h3>
+          <p class="tl-desc">精準定位讓價值一目了然。寫給所有人＝寫給沒人。</p>
+          <div class="topic-box">
+            <div class="topic-box-title">📝 今日 5 個寫作主題</div>
+            <ul class="topic-list">
+              <li data-n="①">當你寫給所有人，就是在寫給沒人</li>
+              <li data-n="②">品牌公式：名字 = 視覺 + 主題 + 服務</li>
+              <li data-n="③">我怎麼從「什麼都發」變成「只講一件事」</li>
+              <li data-n="④">你的讀者是誰？三個問題幫你鎖定</li>
+              <li data-n="⑤">便利商店 vs 專賣店：自媒體定位的隱喻</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot-wrap">D4</div>
+        <div class="tl-card">
+          <div class="tl-day">Day 4 · 心法三</div>
+          <h3>為什麼你的粉絲不願意付費？</h3>
+          <p class="tl-desc">銷售是信任的結果。看見 → 信任 → 成交的三階段漏斗。</p>
+          <div class="topic-box">
+            <div class="topic-box-title">📝 今日 5 個寫作主題</div>
+            <ul class="topic-list">
+              <li data-n="①">為什麼你的粉絲不願意付費？</li>
+              <li data-n="②">信任漏斗：從路人到付費的三個階段</li>
+              <li data-n="③">3-2-1 黃金內容比例怎麼用</li>
+              <li data-n="④">Threads 是聊天室，不是公告欄</li>
+              <li data-n="⑤">幫上忙越多次，人們越願意付費讓你幫更多</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot-wrap">D5</div>
+        <div class="tl-card">
+          <div class="tl-day">Day 5 · 整合實戰</div>
+          <h3>好吧，第一步我幫你決定了</h3>
+          <p class="tl-desc">把三大心法串起來，從今天開始系統化產內容。</p>
+          <div class="topic-box">
+            <div class="topic-box-title">📝 今日 5 個寫作主題</div>
+            <ul class="topic-list">
+              <li data-n="①">如果只能給新手一個建議，我會說⋯</li>
+              <li data-n="②">我現在每週的內容生產流程長這樣</li>
+              <li data-n="③">變現不是冰冷的交易，是溫暖的價值交換</li>
+              <li data-n="④">從零開始的第一個月，我會做這 4 件事</li>
+              <li data-n="⑤">開始 ＞ 完美：你的第一步只需要 10 分鐘</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     HOW IT WORKS
+══════════════════════════════════════════════════════════ -->
+<section class="how-section">
+  <div class="wrap">
+    <span class="label">流程說明</span>
+    <h2 class="section-h2">訂閱後會發生什麼</h2>
+    <p class="section-intro">三個步驟，今天就開始。</p>
+    <div class="steps-row">
+      <div class="step-cell">
+        <div class="step-n">1</div>
+        <h3>輸入 Email 免費訂閱</h3>
+        <p>填入你的 Email，5 分鐘內 PDF 和第一封信就會到達你的信箱。</p>
+      </div>
+      <div class="step-cell">
+        <div class="step-n">2</div>
+        <h3>連續 5 天收到寫作主題</h3>
+        <p>每天打開信箱，選 1 個主題，發到 Threads。不用想，直接寫。</p>
+      </div>
+      <div class="step-cell">
+        <div class="step-n">3</div>
+        <h3>邊寫邊把心法內化</h3>
+        <p>25 個主題寫完，你就自然理解三大心法的實際應用，不是死記理論。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     WHO IS THIS FOR
+══════════════════════════════════════════════════════════ -->
+<section class="who-section">
+  <div class="wrap">
+    <span class="label">適合對象</span>
+    <h2 class="section-h2">這份資源是為你準備的嗎？</h2>
+    <p class="section-intro">誠實說清楚，讓你決定值不值得花 30 秒填 Email。</p>
+    <div class="who-grid">
+      <div class="who-yes">
+        <div class="who-title">✦ 這份資源很適合你，如果你是⋯</div>
+        <ul class="who-list">
+          <li>上班族，想用自媒體建立副業收入</li>
+          <li>已經在發文，但不知道怎麼串成變現系統</li>
+          <li>每天都在煩惱「今天寫什麼」</li>
+          <li>看了很多教學，但缺少可執行的框架</li>
+          <li>想在 Threads 建立個人品牌</li>
+          <li>剛開始做自媒體，想找到正確順序</li>
+        </ul>
+      </div>
+      <div class="who-no">
+        <div class="who-title">✦ 這份資源可能不適合你，如果⋯</div>
+        <ul class="who-list">
+          <li>你已經有完整的內容變現系統在跑</li>
+          <li>你想要的是立竿見影的快速爆紅公式</li>
+          <li>你不打算動手寫任何東西</li>
+          <li>你要找的是流量技巧，不是系統建立</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     ABOUT
+══════════════════════════════════════════════════════════ -->
+<section class="about-section">
+  <div class="wrap">
+    <div class="about-inner">
+      <div class="about-avatar">
+        <div class="avatar-icon">🐱</div>
+        <div class="avatar-name">K叔</div>
+        <div class="avatar-handle">@runing_9to5</div>
+      </div>
+      <div class="about-text">
+        <h2>不想上班的貓，<br>但還是在上班的那種</h2>
+        <p>我是 K叔，一個在上班的斜槓自媒體人。我不是什麼全職網紅或成功企業家，我就是一個普通上班族，用下班後的時間，建立自己的內容變現系統。</p>
+        <p>這也是我能理解你的原因：我跟你一樣，時間有限、能量有限，不可能每天花 4 小時做內容。所以我建立的所有框架，都是「最小可行」的版本。</p>
+        <ul class="about-cred-list">
+          <li>在 Threads 發了 1,500+ 篇文章，分析過哪種文表現好</li>
+          <li>建立了自己的內容→信任→收入系統</li>
+          <li>幫助過多位上班族建立副業自媒體</li>
+          <li>所有方法都是自己做出來的，不是紙上談兵</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     FINAL CTA
+══════════════════════════════════════════════════════════ -->
+<section class="cta-section" id="cta">
+  <div class="cta-inner">
+    <span class="cta-label">立即行動</span>
+    <h2>25 個主題，<br><em>直送你的信箱</em></h2>
+    <p class="desc">
+      不用再煩惱「今天寫什麼」<br>
+      打開信箱，選一個主題，直接寫，直接發
+    </p>
+
+    <!-- ============================================================
+         ★ 在這裡替換第二個 systeme.io 的 inline form script ★
+         （這是頁面底部的 CTA 表單，和上面的 hero 表單連接同一個 list）
+         ============================================================ -->
+    <div class="cta-form-zone">
+      <div class="form-zone-title">
+        輸入 Email，立即免費領取
+      </div>
+      <!-- 替換區：貼上你的 systeme.io script -->
+      <div class="embed-placeholder">
+        <code>&lt;!-- 貼上你的 systeme.io inline form script --&gt;</code>
+        <p>同上，複製同一個 script 貼到這裡</p>
+      </div>
+      <p class="form-guarantee">完全免費・不寄垃圾信・隨時可取消訂閱</p>
+    </div>
+
+    <div class="cta-checklist">
+      <span>完全免費</span>
+      <span>立即寄出 PDF</span>
+      <span>連續 5 天主題信</span>
+      <span>隨時可取消</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     FAQ
+══════════════════════════════════════════════════════════ -->
+<section class="faq-section">
+  <div class="wrap-sm">
+    <span class="label">常見問題</span>
+    <h2 class="section-h2">你可能想問的</h2>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        這份資源適合誰？
+        <span class="icon">+</span>
+      </button>
+      <div class="faq-a">
+        適合想在 Threads（或其他平台）經營自媒體，但不知道從哪開始、或每天都在煩惱「寫什麼」的上班族和斜槓創作者。不管你是剛起步還是已經在發文，只要你想把內容和收入連起來，這份資源都有幫助。
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        真的完全免費嗎？
+        <span class="icon">+</span>
+      </button>
+      <div class="faq-a">
+        是的，PDF 和 5 天序列信完全免費，不需要信用卡或任何付費。如果你之後想深入學習，我有付費的書和陪跑服務，但沒有任何強迫或隱藏費用。
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        我已經有在發文了，還需要這個嗎？
+        <span class="icon">+</span>
+      </button>
+      <div class="faq-a">
+        如果你每天都在煩惱「今天寫什麼」，或是發了很多文但不知道怎麼串成變現系統，那這份資源還是有價值的。它不是教你「怎麼寫」，而是給你一個「系統」，讓你把已有的發文習慣升級。
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        5 天之後呢？
+        <span class="icon">+</span>
+      </button>
+      <div class="faq-a">
+        5 天的序列信結束後，你會留在我的電子報名單，我每週會分享自媒體經營的觀察和方法。如果不想繼續收，隨時可以取消，一鍵搞定，不會有任何問題。
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        K叔是誰？憑什麼相信你？
+        <span class="icon">+</span>
+      </button>
+      <div class="faq-a">
+        我是 @runing_9to5（不想上班的貓），一個在上班的斜槓自媒體人。我在 Threads 發了 1,500+ 篇文章，建立了自己的內容變現系統，也幫助過多位上班族做到一樣的事。我不是什麼全職網紅，我跟你一樣要上班、時間有限，所以我的方法都是「最小可行」的版本。
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        25 個主題寫完之後怎麼辦？
+        <span class="icon">+</span>
+      </button>
+      <div class="faq-a">
+        寫完 25 個主題之後，你會對三大心法有更深的理解，可以開始自己從心法出發去延伸題目。如果你想要更多系統化的支持，我有付費的陪跑服務可以幫你。但先把這 25 個寫完再說，一步一步來。
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">🐱 K叔 @runing_9to5</div>
+    <div class="footer-sub">
+      不想上班的貓 ・ © 2025 ・
+      <a href="#">隱私政策</a> ・ <a href="#">取消訂閱</a>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+function toggleFaq(btn) {
+  const ans = btn.nextElementSibling;
+  const isOpen = ans.classList.contains('open');
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.classList.remove('open');
+    q.querySelector('.icon').textContent = '+';
+  });
+  document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('open'));
+  if (!isOpen) {
+    btn.classList.add('open');
+    btn.querySelector('.icon').textContent = '+';
+    ans.classList.add('open');
+  }
+}
+</script>
+
+</body>
+</html>
