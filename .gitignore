@@ -1,0 +1,7 @@
+node_modules/
+.DS_Store
+k-agent-main.zip
+.claude/
+skills/
+web/package-lock.json
+web/.env

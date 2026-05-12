@@ -388,6 +388,39 @@ input[type="datetime-local"]:focus { border-color: var(--navy-mid); }
   font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 20px;
 }
 
+/* ── Stats Widget ───────────────────────────────────── */
+.stats-widget {
+  background: var(--white); border: 1px solid var(--cream-dark);
+  border-radius: 12px; padding: 14px 18px; margin-bottom: 16px;
+  box-shadow: var(--shadow);
+}
+.stats-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 12px;
+}
+.stats-title {
+  font-size: 12px; font-weight: 700; color: var(--navy-light);
+  display: flex; align-items: center; gap: 6px;
+}
+.stats-updated { font-size: 10px; color: var(--muted); }
+.stats-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+.stat-card {
+  background: var(--cream-light); border: 1px solid var(--cream-dark);
+  border-radius: 10px; padding: 10px 14px; text-align: center;
+}
+.stat-card.total { grid-column: 1 / -1; background: var(--accent-blue); border-color: #C0D8F0; }
+.stat-num { font-size: 26px; font-weight: 700; color: var(--navy); line-height: 1.2; }
+.stat-card.total .stat-num { font-size: 32px; color: var(--navy-mid); }
+.stat-label { font-size: 11px; color: var(--muted); margin-top: 2px; }
+.stat-card.total .stat-label { color: var(--navy-mid); font-weight: 600; }
+.stats-status-row {
+  display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; padding-top: 10px;
+  border-top: 1px solid var(--cream-dark);
+}
+.stat-status-chip {
+  font-size: 11px; padding: 3px 10px; border-radius: 20px; font-weight: 600;
+}
+
 /* ── Gen Progress ────────────────────────────────────── */
 .gen-progress {
   background: var(--accent-warm); border: 1px solid var(--cream-dark);
@@ -480,6 +513,35 @@ input[type="datetime-local"]:focus { border-color: var(--navy-mid); }
       </div>
       <div class="ratio-bars" id="ratioBars">
         <div style="font-size:12px;color:var(--muted)">載入中…</div>
+      </div>
+    </div>
+
+    <!-- 全庫統計面板 -->
+    <div class="stats-widget">
+      <div class="stats-header">
+        <div class="stats-title">📝 文案總覽</div>
+        <span class="stats-updated" id="statsUpdated"></span>
+      </div>
+      <div class="stats-grid" id="statsGrid">
+        <div class="stat-card total">
+          <div class="stat-num" id="statsTotal">—</div>
+          <div class="stat-label">總文案數</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" id="statsIdentity">—</div>
+          <div class="stat-label">👤 個人定位</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" id="statsKnowledge">—</div>
+          <div class="stat-label">💎 知識</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" id="statsSales">—</div>
+          <div class="stat-label">🎯 銷售</div>
+        </div>
+      </div>
+      <div class="stats-status-row" id="statsStatusRow">
+        <span style="font-size:11px;color:var(--muted)">狀態統計載入中…</span>
       </div>
     </div>
 
@@ -657,6 +719,38 @@ function renderRatioBars(counts, week) {
   }).join('')
 }
 
+// ── Stats ──────────────────────────────────────────────
+async function loadStats() {
+  try {
+    const s = await api('GET', '/api/stats')
+    document.getElementById('statsTotal').textContent     = s.total
+    document.getElementById('statsIdentity').textContent  = s.byType['個人定位'] || 0
+    document.getElementById('statsKnowledge').textContent = s.byType['知識'] || 0
+    document.getElementById('statsSales').textContent     = s.byType['銷售'] || 0
+
+    const statusMap = [
+      { key: '已發',  label: '✅ 已發',  bg: 'var(--green-light)',  color: 'var(--green)' },
+      { key: '待發',  label: '⏰ 待發',  bg: 'var(--accent-blue)',  color: 'var(--navy-mid)' },
+      { key: '排程中', label: '📅 排程中', bg: '#EDE8F8',            color: '#5040A0' },
+      { key: '草稿',  label: '✏️ 草稿',  bg: 'var(--cream-dark)',   color: 'var(--muted)' },
+      { key: '略過',  label: '⏭️ 略過',  bg: 'var(--red-light)',    color: 'var(--red)' },
+    ]
+    document.getElementById('statsStatusRow').innerHTML = statusMap
+      .filter(m => (s.byStatus[m.key] || 0) > 0)
+      .map(m =>
+        '<span class="stat-status-chip" style="background:' + m.bg + ';color:' + m.color + '">' +
+          m.label + '&nbsp;' + s.byStatus[m.key] +
+        '</span>'
+      ).join('')
+
+    const t = new Date(s.updatedAt)
+    document.getElementById('statsUpdated').textContent =
+      '更新 ' + t.toLocaleTimeString('zh-TW', { hour: '2-digit', minute: '2-digit' })
+  } catch {
+    document.getElementById('statsTotal').textContent = '—'
+  }
+}
+
 // ── Init ───────────────────────────────────────────────
 function init() {
   const overview = document.getElementById('dayOverview')
@@ -670,6 +764,7 @@ function init() {
   }
   updatePhaseUI(1)
   loadDay(currentDay)
+  loadStats()
 }
 
 function setDay(d) {
@@ -855,6 +950,7 @@ async function generatePosts() {
     toast('✨ 已生成 ' + data.count + ' 篇草稿', 'ok')
     loadDay(currentDay)
     loadWeekStats(currentWeek(), true)
+    loadStats()
   } catch (e) {
     bar.classList.remove('show')
     btn.disabled = false
