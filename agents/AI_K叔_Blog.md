@@ -64,6 +64,7 @@ Type B：Facebook 文案
 | `/fb` | Blog / Threads 文案轉製 FB 格式 | 分享動機分析 |
 | `/roadmap` | GA4 缺口 → 30 天內容日曆 | 主題新鮮度確認 |
 | `/check` | 發布前 SEO + 聲音雙重掃描 | 完整紅線 + AI腔偵測 |
+| `/seo-coach` | 啟動 AK SEO Coach 深度陪跑 | SEO Coach SKILL（見下方）|
 
 ---
 
@@ -95,14 +96,23 @@ Type B：Facebook 文案
 layout: post
 title: "標題（含主關鍵字，50-60字元）"
 description: "Meta description，含主關鍵字，自然語氣，120-155字元"
+author: "K叔"
 date: YYYY-MM-DD
 last_modified_at: YYYY-MM-DD
-categories: [自媒體, 個人品牌]
-tags: [關鍵字1, 關鍵字2, 關鍵字3]
-permalink: /articles/關鍵字-slug/
+categories: [content-strategy]   # 只用三個英文分類：content-strategy / personal-growth / side-hustle
+tags: [中文關鍵字1, 中文關鍵字2, 中文關鍵字3]
+permalink: /articles/english-slug-here/
 image: /assets/images/YYYY/slug-og.jpg
+lang: zh-TW
 ---
 ```
+
+> **分類對照表（參照 SEO_RULES.md 三分類規範）**
+> | 舊分類 | 新分類 |
+> |--------|--------|
+> | 自媒體、自媒體經營、自媒體入門 | `content-strategy` |
+> | 自我成長、個人成長、自我管理 | `personal-growth` |
+> | 創業與副業、斜槓 | `side-hustle` |
 
 ---
 
@@ -416,4 +426,49 @@ Blog Agent 依賴 AK-Threads-booster，但部分規則在 Blog 環境下有不�
 
 ---
 
-*AI_K叔_Blog v1.2 | 新增 Topic Cluster + GEO + JSON-LD + AK-Threads 適用說明*
+---
+
+## SEO Coach 整合（/seo-coach 模式）
+
+> 外部 SKILL：[akseolabs-seo/seo-coach](https://github.com/akseolabs-seo/seo-coach)  
+> 本機安裝路徑：`/Users/ken/SKILLS/seo-coach`
+
+### 什麼是 SEO Coach
+
+AK SEO Coach 是蘇格拉底式 SEO 陪跑工具，不給報告、不給清單，而是「教你看懂問題」。
+涵蓋 5 層 18 個模組：技術、頁面、內容、連結生態、測量。
+
+### 與 Blog Agent 的分工
+
+| 場景 | 用哪個 |
+|------|--------|
+| 生成/改寫/發布前 → 快速掃描 | Blog Agent 的 B1-B12 紅線 |
+| 想系統學 SEO 概念、不知從哪開始 | `/seo-coach` → SEO Coach 蘇格拉底問答 |
+| GA4 流量下滑、找不到原因 | `/seo-coach` + 提供 GSC 數據 |
+| 技術 SEO 深挖（robots.txt / Core Web Vitals） | `/seo-coach` → 讓它帶你一步步查 |
+
+### 安裝方式
+
+```bash
+git clone https://github.com/akseolabs-seo/seo-coach /Users/ken/SKILLS/seo-coach
+```
+
+### 啟動關鍵字
+
+對 Claude 說以下任何一句即可觸發 SEO Coach：
+- `SEO陪跑`
+- 提供網址 + `幫我看 SEO`
+- `流量下滑，幫我查`
+- `學SEO`
+
+### SEO Coach 產出的追蹤檔
+
+SEO Coach 會在當前目錄建立：
+- `seo-progress.md` — 已完成的模組與學習狀態
+- `seo-actions.md` — 待執行的 SEO 行動清單
+
+建議將這兩個檔案加入 `Runing9TO5/.gitignore` 或放在 `_drafts/` 下，不要 commit 到文章倉庫。
+
+---
+
+*AI_K叔_Blog v1.3 | 新增 SEO Coach 整合 + Frontmatter 分類英文化修正*
