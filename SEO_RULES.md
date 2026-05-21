@@ -1,6 +1,6 @@
 # SEO_RULES.md｜K叔 SEO + AI 搜尋核心規則
 > 核心大腦補充檔案（與 Blog Agent 搭配使用）  
-> 版本：v1.0
+> 版本：v1.1
 
 ---
 
@@ -177,4 +177,27 @@ plugins:
 
 ---
 
-*SEO_RULES.md v1.0 | 配合 agents/AI_K叔_Blog.md 使用*
+---
+
+## 八、SEO Coach 外部工具整合
+
+> 來源：[akseolabs-seo/seo-coach](https://github.com/akseolabs-seo/seo-coach)  
+> 安裝：`git clone https://github.com/akseolabs-seo/seo-coach /Users/ken/SKILLS/seo-coach`
+
+**SEO Coach 補充 B1-B12 的面向：**
+
+| 本地 B1-B12 | SEO Coach 補充 |
+|------------|---------------|
+| 發布前快速掃描 | 系統性 18 模組深度審查 |
+| 機械式紅線檢查 | 蘇格拉底問答→讓你理解問題根因 |
+| 無 GSC 數據整合 | 接受 GSC / GA4 數據作為輸入 |
+| 無技術層追蹤 | Core Web Vitals / robots.txt / canonical 深挖 |
+
+**何時用 SEO Coach（vs 直接用 Blog Agent）：**
+- 流量異常下滑 → 找根本原因 → `/seo-coach`
+- 想系統學 SEO 而非只是「過關」→ `/seo-coach`
+- 快速發文前確認 → Blog Agent B1-B12 即可
+
+---
+
+*SEO_RULES.md v1.1 | 新增 SEO Coach 整合說明；配合 agents/AI_K叔_Blog.md v1.3 使用*
