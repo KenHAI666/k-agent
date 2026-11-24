@@ -112,8 +112,8 @@ E-E-A-T = Experience（經歷）/ Expertise（專業）/ Authoritativeness（權
 
 ```yaml
 # SEO 基本設定
-title: "K叔｜低風險自媒體變現系統"
-description: "幫助上班族與內向創作者，不離職也能打造自媒體第二收入。"
+title: "K叔｜低粉 × 高信任 × 低摩擦 Threads 經營"
+description: "不用先衝粉絲。K叔幫有商品、服務或專業的個人品牌，用低摩擦的 Threads 經營，把內容接到信任和詢問。"
 url: "https://runing9to5.com"
 author: "K叔 (runing_9to5)"
 lang: zh-TW
