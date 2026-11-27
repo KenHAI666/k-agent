@@ -11,17 +11,22 @@ SOUL / RULES / TOOLS 是為了社群平台設計的。
 
 ---
 
-## 一、官網現況問題清單（2026-05 診斷）
+## 一、官網現況問題清單（2026-05 診斷 → 2026-11-27 複查）
 
-| 問題 | 說明 | 優先度 |
-|------|------|--------|
-| URL 中文 slug | 所有文章 URL 含中文，encode 後成亂碼 | 🔴 P0 |
-| 分類 taxonomy 混亂 | 6 個分類（自媒體、自我成長、個人成長等）語意重疊 | 🔴 P0 |
-| 標題格式含 `[[分類]` | 吃掉 title tag 黃金前段，SEO 無效率 | 🔴 P0 |
-| 缺 Article JSON-LD | 文章頁無結構化資料，AI 搜尋信任度低 | 🟡 P1 |
-| 缺 FAQPage JSON-LD | 首頁有 FAQ 但無 schema，Google 不顯示 rich snippet | 🟡 P1 |
-| 缺內部連結 | 文章之間幾乎無互連，PageRank 無法流動 | 🟡 P1 |
-| Meta description 不穩定 | 部分文章 description 可能為空 | 🟡 P1 |
+> ⚠️ 2026-11-27 對 `KenHAI666/Runing9TO5`（runing9to5.com 的 Jekyll 原始碼）實地複查：
+> 下表多數 P0/P1 項目**已完成**。Blog Agent 不要再照「2026-05 診斷」當成待辦去改官網，
+> 請以「狀態」欄為準。
+
+| 問題 | 說明 | 優先度 | 狀態（2026-11-27 複查） |
+|------|------|--------|------|
+| URL 中文 slug | 所有文章 URL 含中文，encode 後成亂碼 | 🔴 P0 | ✅ 已完成：52/52 篇皆有 `permalink: /articles/<英文>/`，中文檔名不影響 URL |
+| 分類 taxonomy 混亂 | 6 個分類（自媒體、自我成長、個人成長等）語意重疊 | 🔴 P0 | ✅ 已完成：整併為 3 類 `content-strategy`(39)／`side-hustle`(9)／`personal-growth`(4) |
+| 標題格式含 `[[分類]` | 吃掉 title tag 黃金前段，SEO 無效率 | 🔴 P0 | ✅ 已完成：0 篇含 `[[分類]` 前綴，標題皆為帶關鍵字的語意標題 |
+| 缺 Article JSON-LD | 文章頁無結構化資料，AI 搜尋信任度低 | 🟡 P1 | ✅ 已完成：`_includes/head.html` 以 `@graph` 輸出 Organization＋Person＋Article(含 author/publisher/date) |
+| 缺 FAQPage JSON-LD | 首頁有 FAQ 但無 schema，Google 不顯示 rich snippet | 🟡 P1 | ✅ 已完成：首頁 `is_home` 分支已輸出 FAQPage schema（含 5+ 題） |
+| 缺內部連結 | 文章之間幾乎無互連，PageRank 無法流動 | 🟡 P1 | 🟢 大致完成：52 篇內文皆含 `/articles/` 站內連結；可持續加 Pillar↔Cluster 互連 |
+| Meta description 不穩定 | 部分文章 description 可能為空 | 🟡 P1 | ✅ 已完成：52/52 篇皆有 `description`，另有 `jekyll-seo-tag` 補底 |
+| About 頁 E-E-A-T 偏弱 | About 缺服務年數／具體數字／第三方佐證 | 🟡 P1 | 🔴 **仍待辦**：見第四節；需 K叔提供真實數字後補強，勿捏造 |
 
 ---
 
@@ -182,7 +187,8 @@ plugins:
 ## 八、SEO Coach 外部工具整合
 
 > 來源：[akseolabs-seo/seo-coach](https://github.com/akseolabs-seo/seo-coach)  
-> 安裝：`git clone https://github.com/akseolabs-seo/seo-coach /Users/ken/SKILLS/seo-coach`
+> 安裝（已完成，2026-11-27）：已放進本專案 `.claude/skills/seo-coach/`（隨 repo 版控，雲端對話可直接 `/seo-coach` 載入）。
+> 本機另裝：`~/.claude/skills/seo-coach`（Claude）或 `~/.codex/skills/seo-coach`（Codex）。
 
 **SEO Coach 補充 B1-B12 的面向：**
 
@@ -200,4 +206,4 @@ plugins:
 
 ---
 
-*SEO_RULES.md v1.1 | 新增 SEO Coach 整合說明；配合 agents/AI_K叔_Blog.md v1.3 使用*
+*SEO_RULES.md v1.2 | 2026-11-27 複查官網實況（P0/P1 多數已完成）、SEO Coach 技能改為專案內安裝；配合 agents/AI_K叔_Blog.md v1.3 使用*

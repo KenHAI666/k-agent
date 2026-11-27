@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GSC connector fixture (contract v2)</title>
+    <style>
+      html, body, #dashboard { width: 100%; height: 100%; margin: 0; }
+      #dashboard { display: block; height: 100vh; border: 0; }
+    </style>
+  </head>
+  <body>
+    <!--
+      Host-page fixture. It plays the part of a real GSC bridge: the host owns the
+      connection and hands the panel a connector that follows contract v2
+      (listSites / query / inspectUrl / fetchSitemapUrls). The data is synthetic.
+      Every request the panel makes is recorded on window.__gscBridgeRequests.
+    -->
+    <iframe id="dashboard" title="GSC panel connector fixture" src="../../assets/gsc-dashboard/index.html"></iframe>
+    <script>
+      window.__gscBridgeRequests = [];
+      document.getElementById("dashboard").addEventListener("load", (event) => {
+        const frame = event.target.contentWindow;
+        const source = frame.SEOCoachGscDemo.createDemoConnector();
+        const record = (method) => (request) => {
+          window.__gscBridgeRequests.push({ method, request });
+          return source[method](request);
+        };
+        frame.SEOCoachGscDashboard.connect({
+          version: 2,
+          listSites: record("listSites"),
+          query: record("query"),
+          inspectUrl: record("inspectUrl"),
+          fetchSitemapUrls: record("fetchSitemapUrls"),
+        });
+      });
+    </script>
+  </body>
+</html>
