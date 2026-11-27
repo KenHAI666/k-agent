@@ -9,6 +9,7 @@ web/.env
 !.claude/skills/
 .claude/skills/*
 !.claude/skills/seo-coach/
+!.claude/skills/k-threads-write/
 
 # 其他 root 層 skills 安裝不進版控
 /skills/
