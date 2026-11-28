@@ -4,7 +4,7 @@ k-agent-main.zip
 web/package-lock.json
 web/.env
 
-# Claude 本機設定不進版控，但保留已安裝的 SEO Coach 技能
+# Claude 本機設定不進版控，但保留已安裝的技能
 .claude/*
 !.claude/skills/
 .claude/skills/*
